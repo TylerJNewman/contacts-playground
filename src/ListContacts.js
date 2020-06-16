@@ -1,6 +1,6 @@
 import React from "react";
 
-const ListContacts = ({ contacts }) => {
+const ListContacts = ({ contacts, deleteContact }) => {
   return (
     <ol>
       {contacts.map((contact) => (
@@ -13,7 +13,12 @@ const ListContacts = ({ contacts }) => {
             <p>{contact.name}</p>
             <p>{contact.handle}</p>
           </div>
-          <div className="contact-remove">Remove</div>
+          <div
+            className="contact-remove"
+            onClick={() => deleteContact(contact.id)}
+          >
+            Remove
+          </div>
         </li>
       ))}
     </ol>
