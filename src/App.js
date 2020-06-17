@@ -41,7 +41,7 @@ const App = () => {
           ></ListContacts>
         )}
       />
-      <Route path="/create" render={() => <CreateContact />} />
+      <Route path="/create" component={CreateContact} />
     </>
   );
 };
