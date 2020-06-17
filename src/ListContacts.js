@@ -10,6 +10,9 @@ const ListContacts = ({ contacts, deleteContact }) => {
         const regex = new RegExp(query, "gi");
         return contact.name.match(regex) || contact.handle.match(regex);
       });
+
+  const clearQuery = () => setQuery("");
+
   return (
     <div className="list-contacts">
       <div className="list-contacts-top">
@@ -24,6 +27,15 @@ const ListContacts = ({ contacts, deleteContact }) => {
           Add Contact
         </Link> */}
       </div>
+
+      {showingContacts.length !== contacts.length && (
+        <div className="showing-contacts">
+          <span>
+            Now showing {showingContacts.length} of {contacts.length}
+          </span>
+          <button onClick={clearQuery}>Show all</button>
+        </div>
+      )}
       <ol className="contact-list">
         {showingContacts.map((contact) => (
           <li key={contact.id} className="contact-list-item">
