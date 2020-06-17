@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import { isEmpty } from "./utils/helpers.js";
 
-const ListContacts = ({
-  contacts,
-  deleteContact,
-  filteredContacts,
-  setQuery,
-  query,
-}) => {
+const ListContacts = ({ contacts, deleteContact }) => {
+  const [query, setQuery] = useState("");
+
+  const showingContacts = isEmpty(query)
+    ? contacts
+    : contacts.filter((contact) => {
+        const regex = new RegExp(query, "gi");
+        return contact.name.match(regex) || contact.handle.match(regex);
+      });
   return (
     <div className="list-contacts">
       <div className="list-contacts-top">
@@ -15,14 +18,14 @@ const ListContacts = ({
           type="text"
           placeholder="Search Contacts"
           value={query}
-          onChange={(q) => setQuery(q.target.value)}
+          onChange={(q) => setQuery(q.target.value.trim())}
         />
         {/* <Link to="/create" className="add-contact">
           Add Contact
         </Link> */}
       </div>
       <ol className="contact-list">
-        {filteredContacts.map((contact) => (
+        {showingContacts.map((contact) => (
           <li key={contact.id} className="contact-list-item">
             <div
               className="contact-avatar"
