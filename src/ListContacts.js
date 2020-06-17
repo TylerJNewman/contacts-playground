@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { isEmpty } from "./utils/helpers.js";
+import { Link } from "react-router-dom";
 
 const ListContacts = ({ contacts, deleteContact }) => {
   const [query, setQuery] = useState("");
@@ -23,9 +24,9 @@ const ListContacts = ({ contacts, deleteContact }) => {
           value={query}
           onChange={(q) => setQuery(q.target.value.trim())}
         />
-        {/* <Link to="/create" className="add-contact">
+        <Link to="/create" className="add-contact">
           Add Contact
-        </Link> */}
+        </Link>
       </div>
 
       {showingContacts.length !== contacts.length && (

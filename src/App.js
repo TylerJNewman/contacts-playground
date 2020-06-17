@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { Route } from "react-router-dom";
 import ListContacts from "./ListContacts";
+import CreateContact from "./CreateContact";
 
 const CONTACTS = [
   {
@@ -29,10 +31,17 @@ const App = () => {
 
   return (
     <>
-      <ListContacts
-        contacts={contacts}
-        deleteContact={deleteContact}
-      ></ListContacts>
+      <Route
+        exact
+        path="/"
+        render={() => (
+          <ListContacts
+            contacts={contacts}
+            deleteContact={deleteContact}
+          ></ListContacts>
+        )}
+      />
+      <Route path="/create" render={() => <CreateContact />} />
     </>
   );
 };
