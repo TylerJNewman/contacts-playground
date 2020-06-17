@@ -4,7 +4,7 @@ const ListContacts = ({
   contacts,
   deleteContact,
   filteredContacts,
-  filterContacts,
+  setQuery,
   query,
 }) => {
   return (
@@ -15,7 +15,7 @@ const ListContacts = ({
           type="text"
           placeholder="Search Contacts"
           value={query}
-          onChange={filterContacts}
+          onChange={(q) => setQuery(q.target.value)}
         />
         {/* <Link to="/create" className="add-contact">
           Add Contact
