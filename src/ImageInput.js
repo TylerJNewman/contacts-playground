@@ -81,7 +81,7 @@ class ImageInput extends React.Component {
   }
 
   render() {
-    const { className, name } = this.props;
+    const { className, name, forwardedRef } = this.props;
     const { value } = this.state;
 
     const style = {
@@ -97,7 +97,7 @@ class ImageInput extends React.Component {
 
     return (
       <div className={className} style={style}>
-        <input type="hidden" name={name} value={value} />
+        <input type="hidden" name={name} value={value} ref={forwardedRef} />
         <input
           ref={(node) => (this.fileInput = node)}
           type="file"
@@ -116,4 +116,10 @@ class ImageInput extends React.Component {
   }
 }
 
-export default ImageInput;
+function ForwardRef(props, ref) {
+  return <ImageInput {...props} forwardedRef={ref} />;
+}
+
+const ForwardedRefImageInput = React.forwardRef(ForwardRef);
+
+export default ForwardedRefImageInput;

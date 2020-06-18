@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import ImageInput from "./ImageInput";
 import { useForm } from "react-hook-form";
 
-function onSubmitForm(formData) {
-  alert(formData.name + formData.handle);
-}
-
-const CreateContact = () => {
+const CreateContact = ({ onCreateContact }) => {
   const { register, handleSubmit } = useForm();
+
+  const onSubmitForm = (formData) =>
+    onCreateContact && onCreateContact(formData);
+
   return (
     <div>
       <Link className="close-create-contact" to="/">
@@ -22,6 +22,7 @@ const CreateContact = () => {
           className="create-contact-avatar-input"
           name="avatarURL"
           maxHeight={64}
+          ref={register}
         />
         <div className="create-contact-details">
           <input type="text" name="name" ref={register} placeholder="Name" />

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { isEmpty } from "./utils/helpers.js";
 import { Link } from "react-router-dom";
 
-const ListContacts = ({ contacts, deleteContact }) => {
+const ListContacts = ({ contacts, onDeleteContact }) => {
   const [query, setQuery] = useState("");
 
   const showingContacts = isEmpty(query)
@@ -50,7 +50,7 @@ const ListContacts = ({ contacts, deleteContact }) => {
             </div>
             <div
               className="contact-remove"
-              onClick={() => deleteContact(contact.id)}
+              onClick={() => onDeleteContact(contact)}
             >
               Remove
             </div>
